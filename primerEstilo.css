@@ -66,11 +66,23 @@
   justify-content: space-around;
   font-family: Arial, Helvetica, sans-serif;
 }
+
+#listaProductosAgregados p {
+  width: 30%;
+  text-align: center;
+  border: 2px solid black;
+}
+
 #listaAccesoriosAgregados {
   width: 100%;
   display: flex;
   justify-content: space-around;
   font-family: Arial, Helvetica, sans-serif;
+}
+#listaAccesoriosAgregados p {
+  width: 30%;
+  text-align: center;
+  border: 2px solid black;
 }
 
 #total {

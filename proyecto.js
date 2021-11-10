@@ -43,6 +43,16 @@ let mueblesDisp = [mueble1, mueble2, mueble3];
 //array carrito de muebles
 let carritoMuebles = [];
 
+//clase para accesorios
+class Accesorio {
+  constructor(id, nombre, color, precio) {
+    this.id = id;
+    this.nombre = nombre;
+    this.color = color;
+    this.precio = precio;
+  }
+}
+
 //carga de accesrios disponibles
 let accesorio1 = new Accesorio(1, "Puerta", "blanco", 1500);
 let accesorio2 = new Accesorio(2, "Estante", "blanco", 1000);
@@ -67,21 +77,6 @@ function armarListaProd() {
 <a href="#" class="lista__productos--botonAgregar">Agregar</a>
     </div>`
     );
-
-    //let bloque = document.createElement("div");
-    //let texto1 = document.createElement("h4");
-    //let texto2 = document.createElement("p");
-    //let boton = document.createElement("a");
-    //texto1.innerHTML = `${muebles.nombre}`;
-    //texto2.innerHTML = `Valor: $  ${muebles.precio}`;
-    //boton.innerHTML = `Agregar`;
-    //boton.href = `#`;
-    //boton.className = `lista__productos--botonAgregar`;
-    //lista.appendChild(bloque);
-    //bloque.appendChild(texto1);
-    //bloque.appendChild(texto2);
-    //bloque.appendChild(boton);
-    //console.log(boton);
   }
   //determinamos si hay productos en la sesion
   productoAlmacenado();
@@ -139,16 +134,6 @@ function seleccion(e) {
   let _producto = padre.firstElementChild.innerText;
   console.log(_producto);
 
-  /*for (const productos of mueblesDisp) {
-    if (_producto == productos.nombre) {
-      carritoMuebles.push(productos); //suma al array
-      productos.cantidad++;
-      //compra.addItem(mueble1);
-    } else {
-      //alert("Entrada inválida"); // no existe
-      console.log("Selección invalida");
-    }*/
-
   if (_producto == mueblesDisp[0].nombre) {
     carritoMuebles.push(mueble1); //suma al array
 
@@ -204,13 +189,13 @@ function listaProdAgregados(_producto) {
     producto.appendChild(boton);
   }*/
   //evento para eliminar producto seleccionado
-  //$(".lista__productos--botonEliminar").on("click", eliminarProd);
-  let botEliminarProd = document.querySelectorAll(
+  $(".lista__productos--botonEliminar").click(eliminarProd);
+  /*let botEliminarProd = document.querySelectorAll(
     ".lista__productos--botonEliminar"
   );
   for (let boton of botEliminarProd) {
     boton.addEventListener("click", eliminarProd);
-  }
+  }*/
 }
 
 //eliminar producto seleccionados de la lista
@@ -220,7 +205,7 @@ function eliminarProd(e) {
   let padre2 = hijo.parentNode.parentNode;
   //let vacio = padre2.childElementCount; //número de elementos agregados
   console.log(hijo);
-  console.log(vacio);
+  //console.log(vacio);
   console.log(padre1);
   console.log(padre2);
 
@@ -247,7 +232,7 @@ function eliminarProd(e) {
     $("#sinProducto").show();
   }
   console.log(hijo);
-  console.log(vacio);
+  //console.log(vacio);
   console.log(padre1);
   console.log(padre2);
 
@@ -276,21 +261,19 @@ function descartar(_producto) {
   }
 }
 
-//clase para accesorios
-class Accesorio {
-  constructor(id, nombre, color, precio) {
-    this.id = id;
-    this.nombre = nombre;
-    this.color = color;
-    this.precio = precio;
-  }
-}
-
 //funcion para armar lista de Accesorios disponibles en HTML
 function armarListaAcce() {
   let lista = document.querySelector(".seccionAccesorios");
   for (const accesorio of accesoriosDisp) {
-    let bloque = document.createElement("div");
+    $(".seccionAccesorios").append(
+      `<div>
+      <h4>${accesorio.nombre}</h4>
+<p>Valor: $  ${accesorio.precio}</p>
+<a href="#" class="lista__accesorios--botonAgregar">Agregar</a>
+    </div>`
+    );
+
+    /*let bloque = document.createElement("div");
     let texto1 = document.createElement("h4"); //nombre accesorio
     let texto2 = document.createElement("p"); //precio
     let boton = document.createElement("a"); //link agregar
@@ -302,7 +285,7 @@ function armarListaAcce() {
     lista.appendChild(bloque);
     bloque.appendChild(texto1);
     bloque.appendChild(texto2);
-    bloque.appendChild(boton);
+    bloque.appendChild(boton);*/
   }
   //determinamos si hay accesorios en la sesion
   accesorioAlmacenado();
@@ -459,7 +442,9 @@ function definAcc(e) {
   console.log(hijo);
   console.log(padre);
 
-  let _tipoAcce = padre.firstChild.textContent;
+  //let _tipoAcce = padre.firstChild.textContent;
+  let _tipoAcce = padre.firstElementChild.innerText;
+  console.log(_tipoAcce);
 
   if (_tipoAcce == accesoriosDisp[0].nombre) {
     //console.log("Ha seleccionado el accesorio A");
